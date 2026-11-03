@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مكتبتي التعليمية</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: #101827;
+  color: white;
+}
+
+header {
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #182538;
+  border-bottom: 1px solid #34445b;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: bold;
+  color: #f5c542;
+}
+
+button {
+  border: 0;
+  padding: 12px 17px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login {
+  background: #f5c542;
+  color: #172033;
+}
+
+.hero {
+  text-align: center;
+  padding: 55px 15px 30px;
+}
+
+.hero h1 {
+  font-size: 32px;
+}
+
+.hero p {
+  color: #aebbd0;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+select {
+  padding: 13px;
+  border-radius: 9px;
+  border: 0;
+  min-width: 190px;
+  background: white;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.container {
+  padding: 30px 7%;
+}
+
+.hint {
+  color: #aebbd0;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+}
+
+.book {
+  background: #1e2d43;
+  border: 1px solid #35465e;
+  border-radius: 15px;
+  padding: 15px;
+  transition: .3s;
+}
+
+.book:hover {
+  transform: translateY(-5px);
+  border-color: #f5c542;
+}
+
+.cover {
+  height: 155px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 55px;
+  background: linear-gradient(135deg, #d5a62b, #fff0ae);
+  color: #172033;
+}
+
+.book h3 {
+  margin-bottom: 8px;
+}
+
+.book p {
+  color: #aebbd0;
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.actions button {
+  flex: 1;
+  background: #f5c542;
+  color: #172033;
+}
+
+.actions button:last-child {
+  background: #34445b;
+  color: white;
+}
+
+.empty {
+  text-align: center;
+  color: #aebbd0;
+  padding: 30px;
+  grid-column: 1 / -1;
+}
+
+.soon {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #8998ad;
+}
+
+#glow {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  background: #ffcc3330;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+</style>
+</head>
+
+<body>
+
+<div id="glow"></div>
+
+<header>
+  <div class="logo">📚 مكتبتي التعليمية</div>
+  <button class="login" id="loginBtn">تسجيل الدخول</button>
+</header>
+
+<section class="hero">
+  <h1>كل كتبك الدراسية في مكان واحد</h1>
+  <p>اختر صفك ومسارك ثم المادة ثم كتب أو تقييمات</p>
+
+  <div class="filters">
+
+    <select id="grade">
+      <option value="">اختر الصف الدراسي</option>
+      <option value="first">الصف الأول الثانوي بكالوريا</option>
+      <option value="second">الصف الثاني الثانوي بكالوريا</option>
+      <option value="third">الصف الثالث الثانوي بكالوريا</option>
+    </select>
+
+    <select id="track" class="hidden">
+      <option value="">اختار مسارك</option>
+      <option value="medical">طب وعلوم حياة</option>
+      <option value="engineering">هندسة وعلوم الحاسب</option>
+      <option value="business">الأعمال</option>
+      <option value="arts">الأدب والفنون</option>
+    </select>
+
+    <select id="language" class="hidden">
+      <option value="">اختر اللغة الثانية</option>
+      <option value="فرنساوي">فرنساوي</option>
+      <option value="إيطالي">إيطالي</option>
+      <option value="ألماني">ألماني</option>
+    </select>
+
+    <select id="subject" class="hidden">
+      <option value="">كل المواد</option>
+    </select>
+
+    <select id="kind" class="hidden">
+      <option value="">اختر: كتب أو تقييمات</option>
+      <option value="books">الكتب</option>
+      <option value="assess">التقييمات</option>
+    </select>
+
+    <select id="source" class="hidden">
+      <option value="">كل أنواع الكتب</option>
+      <option value="school">كتب المدرسة</option>
+      <option value="external">كتب خارجية</option>
+    </select>
+
+    <select id="book" class="hidden">
+      <option value="">كل الكتب</option>
+    </select>
+
+  </div>
+</section>
+
+<main class="container">
+  <h2>📖 المواد الدراسية</h2>
+  <p class="hint" id="hint">اختر الصف الدراسي لعرض المواد.</p>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  © 2026 مكتبتي التعليمية - جميع الحقوق محفوظة
+</footer>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+
+const subjects = {
+  first: [
+    ["اللغة العربية", "📕"],
+    ["اللغة الإنجليزية", "📘"],
+    ["التاريخ", "🏛️"],
+    ["الفلسفة والمنطق", "💭"],
+    ["الرياضيات", "📐"],
+    ["العلوم المتكاملة", "🔬"],
+    ["اللغة الفرنسية", "🇫🇷"],
+    ["اللغة الألمانية", "🇩🇪"],
+    ["اللغة الإيطالية", "🇮🇹"],
+    ["البرمجة", "💻"],
+    ["التربية الدينية", "🕌"]
+  ],
+
+  second: {
+    medical: [
+      ["الرياضيات", "📐"],
+      ["الفيزياء", "⚛️"]
+    ],
+    engineering: [
+      ["البرمجة", "💻"],
+      ["الكيمياء", "🧪"]
+    ],
+    business: [
+      ["إدارة أعمال", "📊"],
+      ["المحاسبة", "🧾"]
+    ],
+    arts: [
+      ["لغة تانية", "🌍"],
+      ["علم النفس", "🧠"]
+    ]
+  },
+
+  third: {
+    medical: [
+      ["التربية الدينية", "🕌"],
+      ["الأحياء", "🧬"],
+      ["الكيمياء", "🧪"]
+    ],
+    engineering: [
+      ["التربية الدينية", "🕌"],
+      ["الرياضيات", "📐"],
+      ["الفيزياء", "⚛️"]
+    ],
+    business: [
+      ["التربية الدينية", "🕌"],
+      ["الاقتصاد", "💰"],
+      ["الرياضيات", "📊"]
+    ],
+    arts: [
+      ["التربية الدينية", "🕌"],
+      ["الجغرافيا", "🌍"],
+      ["الإحصاء", "📈"]
+    ]
+  }
+};
+
+const core = [
+  ["اللغة العربية", "📕"],
+  ["اللغة الإنجليزية", "📘"],
+  ["التاريخ", "🏛️"]
+];
+
+const tracks = {
+  medical: "طب وعلوم حياة",
+  engineering: "هندسة وعلوم الحاسب",
+  business: "الأعمال",
+  arts: "الأدب والفنون"
+};
+
+// ====================================================
+// هنا بتضيف الكتب والتقييمات. كل واحد سطر جوه القوسين { }
+// grade: first أو second أو third
+// track: medical أو engineering أو business أو arts
+//        (امسحه لو الكتاب لكل المسارات أو للصف الأول)
+// subject: اسم المادة زي ما هو مكتوب في القايمة بالظبط
+// source (للكتب بس): school يعني كتاب المدرسة، external يعني كتاب خارجي
+// available: false لو لسه منزلش
+// ====================================================
+const BOOKS = [
+  {
+    grade: "first",
+    subject: "اللغة العربية",
+    source: "school",
+    title: "كتاب المدرسة - اللغة العربية",
+    viewUrl: "",
+    downloadUrl: ""
+  },
+  {
+    grade: "first",
+    subject: "اللغة العربية",
+    source: "external",
+    title: "كتاب خارجي - اللغة العربية",
+    viewUrl: "",
+    downloadUrl: ""
+  },
+  {
+    grade: "third",
+    track: "medical",
+    subject: "الأحياء",
+    source: "school",
+    title: "كتاب الأحياء",
+    viewUrl: "",
+    downloadUrl: ""
+  }
+];
+
+const ASSESSMENTS = [
+  {
+    grade: "first",
+    subject: "اللغة العربية",
+    title: "تقييم الأسبوع الأول - اللغة العربية",
+    viewUrl: "",
+    downloadUrl: ""
+  }
+];
+
+let shown = [];
+let bookMode = false;
+
+// تعبئة قائمة المواد حسب الصف والمسار
+function fillSubjects(list) {
+  const select = $("subject");
+  const current = select.value;
+
+  select.innerHTML =
+    '<option value="">كل المواد</option>' +
+    list.map(s => `<option value="${s[0]}">${s[0]}</option>`).join("");
+
+  select.value = list.some(s => s[0] === current) ? current : "";
+  select.classList.remove("hidden");
+}
+
+function hideSubjects() {
+  $("subject").classList.add("hidden");
+  $("subject").value = "";
+}
+
+function hideBooks() {
+  ["kind", "source", "book"].forEach(id => {
+    $(id).classList.add("hidden");
+    $(id).value = "";
+  });
+  bookMode = false;
+}
+
+function showBooks(grade, track, name, icon) {
+  bookMode = true;
+  $("kind").classList.remove("hidden");
+
+  const kind = $("kind").value;
+
+  if (!kind) {
+    $("source").classList.add("hidden");
+    $("source").value = "";
+    $("book").classList.add("hidden");
+    $("book").value = "";
+    shown = [];
+    $("grid").innerHTML =
+      '<div class="empty">اختر كتب أو تقييمات لعرض المحتوى.</div>';
+    return;
+  }
+
+  const isBooks = kind === "books";
+
+  $("source").classList.toggle("hidden", !isBooks);
+  if (!isBooks) $("source").value = "";
+
+  const source = $("source").value;
+  const data = isBooks ? BOOKS : ASSESSMENTS;
+
+  const all = data.filter(b =>
+    b.grade === grade &&
+    b.subject === name &&
+    (!b.track || b.track === track) &&
+    (!isBooks || !source || b.source === source)
+  );
+
+  const select = $("book");
+  const current = select.value;
+
+  select.innerHTML =
+    `<option value="">${isBooks ? "كل الكتب" : "كل التقييمات"}</option>` +
+    all.map((b, i) => `<option value="${i}">${b.title}</option>`).join("");
+
+  select.value = all.some((b, i) => String(i) === current) ? current : "";
+  select.classList.remove("hidden");
+
+  if (all.length === 0) {
+    shown = [];
+    $("grid").innerHTML =
+      '<div class="empty">' +
+      (isBooks ? "لسه الكتاب منزلش" : "لسه التقييمات منزلتش") +
+      "</div>";
+    return;
+  }
+
+  shown = select.value === "" ? all : [all[Number(select.value)]];
+
+  $("grid").innerHTML = shown.map((b, index) => `
+    <div class="book">
+      <div class="cover">${icon}</div>
+      <h3>${b.title}</h3>
+      <p>${name}${isBooks ? (b.source === "external" ? " - كتاب خارجي" : " - كتاب المدرسة") : " - تقييم"}</p>
+      ${
+        b.available === false
+          ? `<p class="soon">${isBooks ? "لسه الكتاب منزلش" : "لسه التقييم منزلش"}</p>`
+          : `<div class="actions">
+               <button data-i="${index}" data-act="view">${isBooks ? "عرض الكتاب" : "عرض التقييم"}</button>
+               <button data-i="${index}" data-act="dl">تحميل</button>
+             </div>`
+      }
+    </div>
+  `).join("");
+}
+
+function clearGrid(message) {
+  $("hint").textContent = message;
+  $("grid").innerHTML = "";
+  shown = [];
+  hideSubjects();
+  hideBooks();
+}
+
+function render() {
+  const grade = $("grade").value;
+  const track = $("track").value;
+  const language = $("language").value;
+
+  const needsTrack = grade === "second" || grade === "third";
+  const needsLanguage = grade === "second" && track === "arts";
+
+  $("track").classList.toggle("hidden", !needsTrack);
+  $("language").classList.toggle("hidden", !needsLanguage);
+
+  let list = [];
+
+  if (!grade) {
+    clearGrid("اختر الصف الدراسي لعرض المواد.");
+    return;
+  }
+
+  if (grade === "first") {
+    list = subjects.first;
+    $("hint").textContent = "مواد الصف الأول الثانوي بكالوريا";
+  }
+
+  if (grade === "second") {
+    if (!track || !subjects.second[track]) {
+      clearGrid("اختر مسارك لعرض المواد الدراسية.");
+      return;
+    }
+
+    list = [...core, ...subjects.second[track]];
+
+    if (track === "arts") {
+      if (!language) {
+        list = list.filter(s => s[0] !== "لغة تانية");
+      } else {
+        list = list.map(s =>
+          s[0] === "لغة تانية"
+            ? ["اللغة " + language, "🌍"]
+            : s
+        );
+      }
+    }
+
+    $("hint").textContent =
+      "الصف الثاني الثانوي بكالوريا - مسار " + tracks[track];
+  }
+
+  if (grade === "third") {
+    if (!track || !subjects.third[track]) {
+      clearGrid("اختر مسارك لعرض المواد الدراسية.");
+      return;
+    }
+
+    // مواد المسار فقط، دون العربي والإنجليزي والتاريخ
+    list = [...subjects.third[track]];
+
+    $("hint").textContent =
+      "الصف الثالث الثانوي بكالوريا - مسار " + tracks[track];
+  }
+
+  // قائمة اختيار المادة
+  fillSubjects(list);
+
+  const chosen = $("subject").value;
+
+  if (chosen) {
+    const icon = (list.find(s => s[0] === chosen) || [0, "📚"])[1];
+    showBooks(grade, track, chosen, icon);
+    return;
+  }
+
+  hideBooks();
+  shown = list;
+
+  if (shown.length === 0) {
+    $("grid").innerHTML =
+      '<div class="empty">لا توجد مواد لعرضها.</div>';
+    return;
+  }
+
+  $("grid").innerHTML = shown.map((subject, index) => `
+    <div class="book">
+      <div class="cover">${subject[1]}</div>
+      <h3>${subject[0]}</h3>
+      <p>كتاب ${subject[0]}</p>
+      <div class="actions">
+        <button data-i="${index}" data-act="view">عرض الكتاب</button>
+        <button data-i="${index}" data-act="dl">تحميل</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+// تحديث القوائم عند تغيير الصف أو المسار أو اللغة أو المادة
+const resetFrom = ids => ids.forEach(id => { $(id).value = ""; });
+
+$("grade").addEventListener("change", () => {
+  resetFrom(["track", "language", "subject", "kind", "source", "book"]);
+  render();
+});
+
+$("track").addEventListener("change", () => {
+  resetFrom(["language", "subject", "kind", "source", "book"]);
+  render();
+});
+
+$("language").addEventListener("change", () => {
+  resetFrom(["subject", "kind", "source", "book"]);
+  render();
+});
+
+$("subject").addEventListener("change", () => {
+  resetFrom(["kind", "source", "book"]);
+  render();
+});
+
+$("kind").addEventListener("change", () => {
+  resetFrom(["source", "book"]);
+  render();
+});
+
+$("source").addEventListener("change", () => {
+  resetFrom(["book"]);
+  render();
+});
+
+$("book").addEventListener("change", render);
+
+// أزرار الكتب
+$("grid").addEventListener("click", event => {
+  const button = event.target.closest("button");
+
+  if (!button) return;
+
+  const index = Number(button.dataset.i);
+  const subject = shown[index];
+
+  if (!subject) return;
+
+  // وضع الكتب: افتح الرابط الحقيقي
+  if (bookMode) {
+    const url = button.dataset.act === "view"
+      ? subject.viewUrl
+      : subject.downloadUrl;
+
+    if (url) {
+      window.open(url, "_blank");
+    } else {
+      alert("لم تتم إضافة الرابط حتى الآن.");
+    }
+    return;
+  }
+
+  if (button.dataset.act === "view") {
+    alert(
+      "كتاب " + subject[0] +
+      "\nلم تتم إضافة رابط عرض الكتاب حتى الآن."
+    );
+  } else {
+    alert(
+      "كتاب " + subject[0] +
+      "\nلم تتم إضافة رابط التحميل حتى الآن."
+    );
+  }
+});
+
+// تسجيل الدخول
+$("loginBtn").addEventListener("click", () => {
+  alert("ميزة تسجيل الدخول سيتم إضافتها لاحقًا.");
+});
+
+// تأثير الإضاءة
+document.addEventListener("mousemove", event => {
+  $("glow").style.left = event.clientX + "px";
+  $("glow").style.top = event.clientY + "px";
+});
+
+// تشغيل الموقع
+render();
+</script>
+
+</body>
+</html>
