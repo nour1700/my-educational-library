@@ -262,10 +262,7 @@ const subjects = {
     ["الرياضيات", "📐"],
     ["العلوم المتكاملة", "🔬"],
     ["اللغة الفرنسية", "🇫🇷"],
-    ["اللغة الألمانية", "🇩🇪"],
-    ["اللغة الإيطالية", "🇮🇹"],
-    ["البرمجة", "💻"],
-    ["التربية الدينية", "🕌"]
+    ["اللغة الإيطالية", "🇮🇹"]
   ],
 
   second: {
@@ -334,31 +331,57 @@ const tracks = {
 // available: false لو لسه منزلش
 // ====================================================
 const BOOKS = [
-  {
-    grade: "first",
-    subject: "اللغة العربية",
-    source: "school",
-    title: "كتاب المدرسة - اللغة العربية",
-    viewUrl: "",
-    downloadUrl: ""
-  },
-  {
-    grade: "first",
-    subject: "اللغة العربية",
-    source: "external",
-    title: "كتاب خارجي - اللغة العربية",
-    viewUrl: "",
-    downloadUrl: ""
-  },
-  {
-    grade: "third",
-    track: "medical",
-    subject: "الأحياء",
-    source: "school",
-    title: "كتاب الأحياء",
-    viewUrl: "",
-    downloadUrl: ""
-  }
+  // ===== الصف الأول =====
+  { grade: "first", subject: "اللغة العربية", source: "school", title: "كتاب المدرسة", viewUrl: "", downloadUrl: "" },
+  // أول - عربي
+  { grade: "first", subject: "اللغة العربية", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  { grade: "first", subject: "اللغة العربية", source: "external", title: "كتاب الأضواء", viewUrl: "", downloadUrl: "" },
+  { grade: "first", subject: "اللغة العربية", source: "external", title: "كتاب كيان", viewUrl: "", downloadUrl: "" },
+  { grade: "first", subject: "اللغة العربية", source: "external", title: "كتاب البرهان", viewUrl: "", downloadUrl: "" },
+  // أول - إنجليزي
+  { grade: "first", subject: "اللغة الإنجليزية", source: "external", title: "كتاب العمالقة", viewUrl: "", downloadUrl: "" },
+  { grade: "first", subject: "اللغة الإنجليزية", source: "external", title: "كتاب المعاصر", viewUrl: "", downloadUrl: "" },
+  { grade: "first", subject: "اللغة الإنجليزية", source: "external", title: "كتاب جيمي", viewUrl: "", downloadUrl: "" },
+  // أول - تاريخ
+  { grade: "first", subject: "التاريخ", source: "external", title: "كتاب الأضواء", viewUrl: "", downloadUrl: "" },
+  { grade: "first", subject: "التاريخ", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  // أول - علوم متكاملة
+  { grade: "first", subject: "العلوم المتكاملة", source: "external", title: "كتاب الأضواء", viewUrl: "", downloadUrl: "" },
+  { grade: "first", subject: "العلوم المتكاملة", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  // أول - رياضيات
+  { grade: "first", subject: "الرياضيات", source: "external", title: "كتاب المعاصر", viewUrl: "", downloadUrl: "" },
+  // أول - فلسفة ومنطق
+  { grade: "first", subject: "الفلسفة والمنطق", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  // أول - فرنساوي
+  { grade: "first", subject: "اللغة الفرنسية", source: "external", title: "كتاب برافو", viewUrl: "", downloadUrl: "" },
+  { grade: "first", subject: "اللغة الفرنسية", source: "external", title: "كتاب ميرسي", viewUrl: "", downloadUrl: "" },
+  // أول - إيطالي
+  { grade: "first", subject: "اللغة الإيطالية", source: "external", title: "كتاب البريمو", viewUrl: "", downloadUrl: "" },
+  // ===== الصف الثاني (كل المسارات) =====
+  // تاني - عربي
+  { grade: "second", subject: "اللغة العربية", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  // تاني - إنجليزي
+  { grade: "second", subject: "اللغة الإنجليزية", source: "external", title: "كتاب المعاصر", viewUrl: "", downloadUrl: "" },
+  // تاني - تاريخ
+  { grade: "second", subject: "التاريخ", source: "external", title: "كتاب المعاصر", viewUrl: "", downloadUrl: "" },
+  { grade: "second", subject: "التاريخ", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  // تاني - طب وعلوم حياة
+  { grade: "second", track: "medical", subject: "الرياضيات", source: "external", title: "كتاب المعاصر", viewUrl: "", downloadUrl: "" },
+  { grade: "second", track: "medical", subject: "الفيزياء", source: "external", title: "كتاب المعاصر", viewUrl: "", downloadUrl: "" },
+  { grade: "second", track: "medical", subject: "الفيزياء", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  // تاني - هندسة وعلوم الحاسب
+  { grade: "second", track: "engineering", subject: "البرمجة", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  { grade: "second", track: "engineering", subject: "البرمجة", source: "external", title: "كتاب فايز", viewUrl: "", downloadUrl: "" },
+  { grade: "second", track: "engineering", subject: "الكيمياء", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  // تاني - الأعمال
+  { grade: "second", track: "business", subject: "إدارة أعمال", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  { grade: "second", track: "business", subject: "المحاسبة", source: "external", title: "كتاب الامتحان", viewUrl: "", downloadUrl: "" },
+  // تاني - الأدب والفنون (اللغة التانية)
+  { grade: "second", track: "arts", subject: "اللغة فرنساوي", source: "external", title: "كتاب برافو", viewUrl: "", downloadUrl: "" },
+  { grade: "second", track: "arts", subject: "اللغة فرنساوي", source: "external", title: "كتاب ميرسي", viewUrl: "", downloadUrl: "" },
+  { grade: "second", track: "arts", subject: "اللغة إيطالي", source: "external", title: "كتاب البريمو", viewUrl: "", downloadUrl: "" },
+  // ===== الصف الثالث =====
+  { grade: "third", track: "medical", subject: "الأحياء", source: "school", title: "كتاب الأحياء", viewUrl: "", downloadUrl: "" }
 ];
 
 const ASSESSMENTS = [
