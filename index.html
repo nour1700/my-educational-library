@@ -3,7 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>مكتبتي التعليمية</title>
+
+<meta name="description" content="مكتبتي التعليمية، مكتبة إلكترونية تضم كتب ومناهج الثانوية العامة، وتساعد الطلاب على الوصول إلى الكتب الدراسية حسب الصف الدراسي والمسار والمادة بسهولة.">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://nour1700.github.io/my-educational-library/">
+
+<meta property="og:title" content="مكتبتي التعليمية">
+<meta property="og:description" content="مكتبة إلكترونية تضم كتب ومناهج الثانوية العامة حسب الصف الدراسي والمسار والمادة.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nour1700.github.io/my-educational-library/">
+<meta property="og:locale" content="ar_EG">
 
 <style>
 * {
@@ -635,7 +648,6 @@ const glowEl = $("glow");
 let lastTouch = 0;
 
 document.addEventListener("mousemove", event => {
-  // تجاهل حركة الماوس الوهمية اللي بتيجي بعد اللمس
   if (Date.now() - lastTouch < 1000) return;
 
   glowEl.style.left = event.clientX + "px";
@@ -643,7 +655,7 @@ document.addEventListener("mousemove", event => {
   glowEl.style.opacity = 1;
 });
 
-// تأثير الإضاءة باللمس: بيتحرك مع الصباع ويسيب أثر، ويختفي لما ترفع صباعك
+// تأثير الإضاءة باللمس
 let lastX = null;
 let lastY = null;
 
